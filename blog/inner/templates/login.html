@@ -1,0 +1,49 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html>
+  {% block search %}
+  {% endblock search %}
+  {% block intro %}
+  {% endblock intro %}
+  {% block msgs %}
+  {% endblock msgs %}
+{% block container %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'login.css' %}" />
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login</title>
+</head>
+<body>
+	<div class="login-page">
+  <div class="form">
+    <form method="post" class="register-form">
+      {% csrf_token %}
+      <input type="text" name="uname" placeholder="name"/>
+      <input type="password" name="psw" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form method="post" class="login-form">
+    	{% csrf_token %}
+      <input type="text" name="uname" placeholder="username"/>
+      <input type="password" name="psw" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="{% url 'signup' %}">Create an account</a></p>
+      <p class="message"><a href="{% url 'signup' %}">Forget Password</a></p>
+    </form>
+          {% if messages %}
+      {% for message in messages %}
+      <hr>
+      <div class="alert alert-danger" role="alert">
+      {{ message }}
+      </div>
+      {% endfor %}
+      {% endif %}
+  </div>
+</div>
+{% endblock container %}
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html>
+  {% block container %}
+  {% block search %}
+  {% endblock search %}
+  {% block intro %}
+  {% endblock intro %}
+  {% block msgs %}
+  {% endblock msgs %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'login.css' %}" />
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Signup</title>
+</head>
+<body>
+	<div class="login-page">
+  <div class="form">
+    <form method="post" class="login-form">
+    	{% csrf_token %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-danger" role="alert">
+      {{ message }}
+      </div>
+      {% endfor %}
+      {% endif %}
+      <h1>Register</h1>
+      <hr>
+      <input type="text" name="username" placeholder="username"/ required>
+      <input type="text" name="fname" placeholder="First Name"/ required>
+      <input type="text" name="lname" placeholder="Last Name"/ required>
+      <input type="email" name="email" placeholder="email"/ required>
+      <input type="password" name="pass1" placeholder="password"/ required>
+      <input type="password" name="pass2" placeholder="password(Again)"/ required>
+      <button>Signup</button>
+      <p class="message">Have Account? <a href="">Login to your account</a></p>
+    </form>
+  </div>
+</div>
+</body>
+{% endblock container %}
+</html>
+
+

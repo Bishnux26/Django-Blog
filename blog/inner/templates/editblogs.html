@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+
+{% block container %}
+{% block intro %}
+{% endblock intro %}
+{% block search %}
+{% endblock search %}
+<style>
+  .dex{
+    whitespace:normal;
+  }
+</style>
+<body style="background-color:white;">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<div class="jumbotron" style="background-color:; color:black; text-align:center; padding:10px; margin:15px;">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="jumbotron jumbotron-fluid" style="text-align: center; padding: 10px; padding-top: 25px; ">
+        <div class="container" style="border: 1px solid whitesmoke; background-color: whitesmoke;">
+          <h1 class="display-4" style="font-size:30px; color:black;"><strong>Edit/Update Blogs  !</strong></h1>
+          <p class="lead">  <p>Edit/Update your blog from here ...</p></p>
+        </div><br><br>
+        <p>Title:</p>
+        {{editblogs.title}}<br>
+        <p>Description:</p>
+        {{editblogs.description}}<br>
+        {{editblogs.images}}<hr>
+        <span> <button type="submit" class="btn btn-success">POST</button></span>
+        <span><button type="button" class="btn btn-danger"><a href="{% url 'home' %}" style="text-decoration:none; color:white;">CANCEL</a></button></span>
+    {% endblock container %}

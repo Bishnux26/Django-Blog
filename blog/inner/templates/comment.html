@@ -1,0 +1,53 @@
+{% extends 'home.html' %}
+
+{% block intro %}
+{% endblock intro %}
+{% block search %}
+{% endblock search %}
+{% block container %}
+<style>
+    .descript{
+        padding-right:20px;
+        padding-left:20px;
+        margin:35px;
+        border:1px solid whitesmoke;
+        background-color:whitesmoke;
+        overflow:hidden;
+        line-height:40px;
+    }
+    body{
+        background-color:whitesmoke;
+      }
+      .comment{
+        background-color:green;
+      }
+</style>
+<section class="body">
+    <div class="bodyleft">
+        <div class="title">
+            <h1 style="padding-left:200px; margin:10px;"><i>{{post.title}}</i></h1>
+        </div>
+    </div>
+</section>
+<p><div class="descript" style="white-space: pre-line; font-size:20px; background-color:whitesmoke; padding:50px;">{{post.description|safe }}</div></p>
+<img src="{{post.images.url}}" style="height:90%; width:90%; padding-left:100px; padding-right:100px;">
+<br><br><br>
+<div style="padding-left:50px; background-color:white;">
+    <br>
+    <h1 style=" font-size:20px; padding-left:5px;">Comments</h1>
+    <form method="post">
+        {% csrf_token %}
+    <div class="form-group">
+        <label for="formGroupExampleInput2"></label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Your Name" name="name" style="width:80%;">
+      </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1"></label>
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Comment" name="body" style="whitespace:normal; width:80%;"></textarea>
+    </div>
+</form>
+    <button type="submit" class="btn btn-success" style="margin-left:;">COMMENT</button>
+    <input type="submit">
+</div><hr>
+<hr class="hr-1" value="CONTENT HERE">
+{% endblock container %}

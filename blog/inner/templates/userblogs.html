@@ -1,0 +1,36 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html>
+  {% block search %}
+  {% endblock search %}
+  {% block intro %}
+  {% endblock intro %}
+{% block container %}
+<div class="jumbotron jumbotron-fluid" style="text-align: center; padding: 10px; padding-top: 25px; ">
+  <div class="container" style="border: 1px solid whitesmoke; background-color: whitesmoke;">
+    <h1 class="display-4" style="font-size:30px; color:black;"><strong>Your Blogs !</strong></h1>
+    <p class="lead">  <p>Edit/Update your Blogs from here ...</p></p>
+  </div><br><br>
+  <div style="display:flex;">
+  {% for userblogs in userblogs %}
+  <section style="display:flex;">
+  <div class="card" style="width: 18rem; display:flex;">
+  <img class="card-img-top" src="{{userblogs.images.url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{userblogs.title}}</h5>
+    <hr>
+    <p class="card-text">Description :<br><pre>{{userblogs.description|truncatewords:55}}</pre></p>
+  </div>
+  <form method=="post">
+    {% csrf_token %}
+  <div class="card-body">
+   <span> <button type="button" class="btn btn-success"><a href="{% url 'editblogs' id=userblogs.id %}" style="text-decoration:none; color:white;">Edit</a></button></span>
+   <span><button type="button" class="btn btn-danger"><a href="{% url 'delete' pk=userblogs.id %}" style="text-decoration:none; color:white;">Delete</a></button></span>
+    </form>
+  </div><hr>
+</div><hr>
+</section><hr>
+{% endfor %}<hr>
+</div>
+</div>
+  {% endblock container %}
